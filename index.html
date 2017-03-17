@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Google Translate</title>
+    </head>
+    <body> 
+        <a id="myLink" href="https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&dt=t&q=hello">File Link</a>
+        
+    </body>
+    
+    <script>
+        document.querySelector("#myLink").addEventListener("click",function(event){
+            event.preventDefault();
+            var file = document.getElementById("myLink").getAttribute("href");
+            //console.log("FilE: "+file);
+           
+            
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET",file,false);
+            
+            rawFile.onreadystatechange = function() {
+                
+                if(rawFile.readyState === 4) {
+                    if(rawFile.status === 200 || rawFile.status === 0) {
+                        var x = rawFile.responseText;
+                        
+                        /*function translating(x) {
+                            return { 
+                                "lang": x[2],
+                                "text": x[0][0][0]
+                            };
+                        }
+            
+                        var obj = translating(x);
+            */
+                        
+                        var propValue;
+                        for(var propName in x) {
+                            propValue = x[propName]
+
+                            console.log(propName,propValue);
+                        }
+//                        console.log(x);
+                    }
+                }
+            }
+            rawFile.send(null);    
+        },false);
+        
+        
+        
+        /*document.querySelector("#myLink").addEventListener("click",function(event){
+            event.preventDefault();
+            var file = document.getElementById("myLink").getAttribute("href");
+            console.log("FilE: "+file);
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET",file,false);
+            rawFile.onreadystatechange = function() {
+                if(rawFile.readyState === 4) {
+                    if(rawFile.status === 200 || rawFile.status === 0) {
+                        var allText = rawFile.responseText;
+                        console.log("allText: "+allText);
+                    }
+                }
+            }
+            rawFile.send(null);
+        },false);*/
+        
+        
+        
+    </script>
+</html>
