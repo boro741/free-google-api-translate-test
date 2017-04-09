@@ -4,7 +4,7 @@
         <title> Google Translate</title>
     </head>
     <body> 
-        <a id="myLink" href="https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&dt=t&q=%20Hello%20world%20how%20are%20you">File Link</a>
+        <a id="myLink" href="https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=%20Hello%20World%20how%20are%20you">File Link</a>
         
     </body>
     
@@ -43,7 +43,7 @@
 
                             console.log(propName,propValue);
                         }*/
-                        console.log(obj.text);
+                        console.log(obj);
                     }
                 }
             }
@@ -51,6 +51,40 @@
         },false);
         
         
+        
+        
+        /* Another way
+            var link = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=%20Hello%20world%20how%20are%20you";
+
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET",link,true);
+
+        rawFile.onreadystatechange = function() {
+                
+                if(rawFile.readyState === 4) {
+                    if(rawFile.status === 200 || rawFile.status === 0) {
+                        var x = rawFile.response;
+                        
+                        var  regex = /\[{3,}"(.*?)"/g;
+                        
+                       var m = regex.exec(x);
+                        
+                        function translating(m) {
+                            return { 
+                                "text": m[1]
+                            };
+                        }
+            
+                        var obj = translating(m);
+            
+                        console.log(obj);
+                    }
+                }
+            }
+ 
+ rawFile.send(null);
+        
+         */
         
         /*document.querySelector("#myLink").addEventListener("click",function(event){
             event.preventDefault();
